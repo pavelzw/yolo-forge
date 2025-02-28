@@ -57,6 +57,7 @@ jobs:
           const token = await core.getIDToken('prefix.dev')
           core.setOutput('token', token)
     - name: Mint the API Key on prefix.dev
+      shell: bash
       if: github.event_name == 'push'  # do not upload on PR
       run: |
         TOKEN="${{ steps.get_token.outputs.token }}"
