@@ -46,8 +46,8 @@ jobs:
     - name: Upload packages as artifacts
       uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
       with:
-        path: |
-          output/**/*.conda
+        path: output/**/*.conda
+        name: output-${{ matrix.os }}
     - name: Get JWT
       id: get_token
       if: github.event_name == 'push'  # do not upload on PR
