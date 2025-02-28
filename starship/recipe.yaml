@@ -20,6 +20,7 @@ tests:
 requirements:
   build:
     - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
   run_exports:
     - starship <0
 
