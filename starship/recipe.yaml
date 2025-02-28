@@ -1,0 +1,30 @@
+context:
+  name: starship-fork-pavelzw
+  version: '1.22.1'
+
+package:
+  name: "typst-${{ name }}"
+  version: ${{ version }}
+
+source:
+  url: https://github.com/pavelzw/starship/archive/1582b9b6058b293daf709927897e5487c3acbea2.tar.gz
+  sha256: 5a2a5966adeef0951cd284d316bfcbc468e19f45bb795e739df7e1e3450e4d0e
+
+build:
+  number: 0
+
+tests:
+  - script:
+      - starship --version
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+  run_exports:
+    - starship <0
+
+about:
+  repository: https://github.com/pavelzw/starship
+  license: ISC
+  license_file: LICENSE
+  summary: The minimal, blazing-fast, and infinitely customizable prompt for any shell!
