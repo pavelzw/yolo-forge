@@ -15,6 +15,7 @@ shellcheck = "*"
 pre-commit = "*"
 pre-commit-hooks = "*"
 taplo = "*"
+typos = "*"
 
 [feature.lint.tasks]
 pre-commit-install = "pre-commit install"
