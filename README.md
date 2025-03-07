@@ -8,6 +8,8 @@ The full documentation for the recipe format can be found in the [rattler-build 
 
 ## starship
 
+See [pixi's documentation](https://pixi.sh/dev/integration/third_party/starship)
+
 ```
 pixi global install -c https://prefix.dev/yolo-forge starship-fork-pavelzw
 ```
