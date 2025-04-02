@@ -11,7 +11,7 @@ source:
   sha256: 600acb0006e976e8b76dc3eeddbc9c2519bb074403ce04a1238929f82118beb8
 
 build:
-  number: 2
+  number: 3
 
 tests:
   - script:
@@ -21,7 +21,7 @@ requirements:
   build:
     - ${{ compiler('rust') }}
     - cargo-bundle-licenses
-  run_exports:
+  run_constraints:
     - starship <0
 
 about:
