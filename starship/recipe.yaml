@@ -1,31 +1,24 @@
 context:
   name: starship-fork-pavelzw
-  version: '1.22.1'
+  version: '1.23.0'
 
 package:
   name: ${{ name }}
   version: ${{ version }}
 
-source:
-  url: https://github.com/starship/starship/archive/d24e78754a0ce1d5ea77eae0a7d3b19aaa7bcfc8.tar.gz
-  sha256: b13b7771f770d0a618cd5d97c9bb9878678709cc35fb29c840b6f104895cad41
-
 build:
-  number: 5
+  number: 0
+  noarch: generic
 
 tests:
   - script:
       - starship --version
 
 requirements:
-  build:
-    - ${{ compiler('rust') }}
-    - cargo-bundle-licenses
-  run_constraints:
-    - starship <0
+  run:
+    - starship >=1.23.0
 
 about:
   repository: https://github.com/pavelzw/starship
   license: ISC
-  license_file: LICENSE
   summary: The minimal, blazing-fast, and infinitely customizable prompt for any shell!
