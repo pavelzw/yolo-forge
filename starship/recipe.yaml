@@ -7,11 +7,11 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://github.com/pavelzw/starship/archive/784ac28e7b7ff845e358de8443825f7ae5af5ace.tar.gz
-  sha256: b7c13897eb3ab3f1fe3ba4ef4ba50fd01e3e05423f0e399822475ed647ec3d76
+  url: https://github.com/starship/starship/archive/d24e78754a0ce1d5ea77eae0a7d3b19aaa7bcfc8.tar.gz
+  sha256: b13b7771f770d0a618cd5d97c9bb9878678709cc35fb29c840b6f104895cad41
 
 build:
-  number: 4
+  number: 5
 
 tests:
   - script:
