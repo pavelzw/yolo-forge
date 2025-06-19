@@ -27,7 +27,8 @@ tests:
   - package_contents:
       bin:
         - yap
-      strict: true
+      # https://github.com/prefix-dev/recipe-format/issues/61
+      # strict: true
   # runners don't support macOS >=26 yet
   # - script: yap --version
 
