@@ -1,0 +1,42 @@
+context:
+  name: yap
+  version: 1.0.2
+
+package:
+  name: ${{ name }}-repackaged
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/finnvoor/${{ name }}/releases/download/1.0.2/yap-1.0.2.tar.gz
+    sha256: 78e51334712fb5a6c393d682a7675f92b6f6215ca42558803362e68302769f91
+  - url: https://raw.githubusercontent.com/finnvoor/${{ name }}/refs/tags/${{ version }}/LICENSE
+    sha256: 7179683e8000e6bdc9bbc60d85edf0a4ac8e76f951857f54fcb775d5886f1309
+
+build:
+  number: 0
+  skip: target_platform != 'osx-arm64'
+  script:
+    - mkdir -p $PREFIX/bin
+    - cp yap $PREFIX/bin/yap
+
+requirements:
+  run:
+    - __osx >=26
+
+tests:
+  - package_contents:
+      bin:
+        - yap
+      strict: true
+  # runners don't support macOS >=26 yet
+  # - script: yap --version
+
+about:
+  summary: 🗣️ A CLI for on-device speech transcription using Speech.framework on macOS 26
+  homepage: https://github.com/finnvoor/yap
+  repository: https://github.com/finnvoor/yap
+  license: CC0-1.0
+  documentation: https://github.com/finnvoor/yap
+  # https://github.com/prefix-dev/rattler-build/issues/1730
+  license_file: LICENSE
+  # license_url: https://raw.githubusercontent.com/finnvoor/${{ name }}/refs/tags/${{ version }}/LICENSE
