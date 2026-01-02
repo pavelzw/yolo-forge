@@ -1,0 +1,40 @@
+context:
+  name: xcede
+  version: 0.5.0
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: https://codeberg.org/luxmentis/${{ name }}/archive/${{ version }}.tar.gz
+    sha256: a3b753b4383c4d829bd353685f8ae03a6f4effcbde942248f289f25a775fa30d
+  - url: https://codeberg.org/luxmentis/${{ name }}/raw/tag/${{ version }}/LICENCE.txt
+    sha256: 09e64454d10710ae2ac7db3cbabd50aa4130392abf7b353a61e88c3425aa6673
+
+build:
+  number: 0
+  skip: target_platform != 'osx-arm64'
+  script:
+    - swift build -c release --arch arm64
+    - mkdir -p $PREFIX/bin
+    - cp .build/arm64-apple-macosx/release/xcede $PREFIX/bin/xcede
+
+requirements:
+  run:
+    - __osx >=26
+
+tests:
+  - package_contents:
+      bin:
+        - xcede
+      strict: true
+  - script: xcede --help
+
+about:
+  summary: Build, run and debug Xcode projects outside Xcode
+  homepage: https://codeberg.org/luxmentis/xcede
+  repository: https://codeberg.org/luxmentis/xcede
+  license: GPL-3.0-or-later
+  documentation: https://codeberg.org/luxmentis/xcede
+  license_file: LICENCE.txt

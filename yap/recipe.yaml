@@ -13,7 +13,7 @@ source:
     sha256: 7179683e8000e6bdc9bbc60d85edf0a4ac8e76f951857f54fcb775d5886f1309
 
 build:
-  number: 0
+  number: 1
   skip: target_platform != 'osx-arm64'
   script:
     - mkdir -p $PREFIX/bin
@@ -27,10 +27,8 @@ tests:
   - package_contents:
       bin:
         - yap
-      # https://github.com/prefix-dev/recipe-format/issues/61
-      # strict: true
-  # runners don't support macOS >=26 yet
-  # - script: yap --version
+      strict: true
+  - script: yap --version
 
 about:
   summary: 🗣️ A CLI for on-device speech transcription using Speech.framework on macOS 26
@@ -38,6 +36,4 @@ about:
   repository: https://github.com/finnvoor/yap
   license: CC0-1.0
   documentation: https://github.com/finnvoor/yap
-  # https://github.com/prefix-dev/rattler-build/issues/1730
   license_file: LICENSE
-  # license_url: https://raw.githubusercontent.com/finnvoor/${{ name }}/refs/tags/${{ version }}/LICENSE
