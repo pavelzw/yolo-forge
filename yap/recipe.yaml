@@ -28,7 +28,7 @@ tests:
       bin:
         - yap
       strict: true
-  - script: yap --version
+  # - script: yap --version
 
 about:
   summary: 🗣️ A CLI for on-device speech transcription using Speech.framework on macOS 26

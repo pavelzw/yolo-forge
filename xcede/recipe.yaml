@@ -20,10 +20,6 @@ build:
     - mkdir -p $PREFIX/bin
     - cp .build/arm64-apple-macosx/release/xcede $PREFIX/bin/xcede
 
-requirements:
-  run:
-    - __osx >=26
-
 tests:
   - package_contents:
       bin:
