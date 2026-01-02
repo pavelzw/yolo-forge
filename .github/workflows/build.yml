@@ -33,11 +33,12 @@ jobs:
     - uses: prefix-dev/setup-pixi@82d477f15f3a381dbcc8adc1206ce643fe110fb7 # v0.9.3
       with:
         activate-environment: true
+    # https://github.com/conda-forge/conda-forge.github.io/issues/2550
     - name: Install Swift
       if: matrix.os == 'macos-latest'
-      run: |
-        brew install swift
-        swift --version
+      uses: swift-actions/setup-swift@7ca6abe6b3b0e8b5421b88be48feee39cbf52c6a # v2.4.0
+    - run: swift --version
+      if: matrix.os == 'macos-latest'
     - name: Build packages
       shell: bash
       run: |
