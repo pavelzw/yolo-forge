@@ -28,6 +28,7 @@ tests:
       bin:
         - yap
       strict: true
+  # runners don't support macOS >=26 yet
   # - script: yap --version
 
 about:
