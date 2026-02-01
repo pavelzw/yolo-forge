@@ -12,6 +12,7 @@ on:
 permissions:
   contents: read
   id-token: write
+  pull-requests: write
 
 jobs:
   build:
@@ -45,10 +46,21 @@ jobs:
       shell: bash
       run: |
         rattler-build build --recipe-dir . --skip-existing=all \
-            -c conda-forge -c https://prefix.dev/yolo-forge
+            -c https://prefix.dev/yolo-forge -c conda-forge
+
+        # https://github.com/prefix-dev/rattler-build/issues/2112
+        # Check if any packages were built
+        if [ ! -d "./output" ] || [ -z "$(find ./output -type f -name "*.conda" 2>/dev/null)" ]; then
+          echo "❌ no package was built, did you increment the recipe version?" >> "$GITHUB_STEP_SUMMARY"
+        fi
+
+        if [ "${{ github.event_name }}" = "pull_request" ] && [ -s "$GITHUB_STEP_SUMMARY" ]; then
+          gh pr comment ${{ github.event.pull_request.number }} --body-file "$GITHUB_STEP_SUMMARY"
+        fi
       env:
         RATTLER_BUILD_ENABLE_GITHUB_INTEGRATION: true
         RATTLER_BUILD_COLOR: always
+        GH_TOKEN: ${{ github.token }}
     - name: Upload packages as artifacts
       uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
       with:
