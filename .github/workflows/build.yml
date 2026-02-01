@@ -45,6 +45,7 @@ jobs:
     - name: Build packages
       shell: bash
       run: |
+        echo "# ${{ matrix.os }}" >> "$GITHUB_STEP_SUMMARY"
         rattler-build build --recipe-dir . --skip-existing=all \
             -c https://prefix.dev/yolo-forge -c conda-forge
 
