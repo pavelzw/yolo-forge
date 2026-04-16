@@ -1,6 +1,7 @@
 [workspace]
 name = "yolo-forge"
 channels = ["conda-forge"]
+exclude-newer = "7d"
 platforms = ["linux-64", "linux-aarch64", "win-64", "osx-arm64"]
 
 [feature.build.tasks]
