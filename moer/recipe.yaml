@@ -1,0 +1,51 @@
+context:
+  version: 1.4.0
+
+package:
+  name: moer
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/moshix/moer/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: db77bd4f6d1aec917201da674bff40507d4d66ced7d940caa52baa3966a5c0d8
+
+build:
+  number: 0
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      - if: unix
+        then:
+          - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path .
+        else:
+          - cargo auditable install --locked --no-track --bins --root %LIBRARY_PREFIX% --path .
+      - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - cargo-auditable
+
+tests:
+  - script: moer --version
+  - package_contents:
+      bin:
+        - moer
+      strict: true
+
+about:
+  summary: An LLM implementation of the MOE editor in Rust (ported from Go)
+  description: |
+    moer is the moe editor reimplemented in Rust — a fast terminal text editor
+    for people who type without looking at the keyboard.
+  homepage: https://github.com/moshix/moer
+  repository: https://github.com/moshix/moer
+  license: LicenseRef-Moshix-Software-License-1.1
+  license_file:
+    - LICENSE.md
+    - THIRDPARTY.yml

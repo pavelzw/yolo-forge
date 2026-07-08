@@ -1,0 +1,58 @@
+context:
+  version: 4.2.2
+  # the release binaries carry a four-part build version
+  build_version: 4.2.2.3
+
+package:
+  name: web3270
+  version: ${{ version }}
+
+source:
+  - if: linux and x86_64
+    then:
+      url: https://github.com/moshix/web3270/releases/download/${{ version }}/web3270-${{ build_version }}-linux-amd64
+      file_name: web3270
+      sha256: 408acdc676b1881bb1454b6eb7acd803f25a014bd2a6e64e7462eae2b82567b6
+  - if: linux and aarch64
+    then:
+      url: https://github.com/moshix/web3270/releases/download/${{ version }}/web3270-${{ build_version }}-linux-arm64
+      file_name: web3270
+      sha256: 561310a46605021c338ba7111a22971eab9c5a1539975e8bbf33e889de242eff
+  - if: osx and arm64
+    then:
+      url: https://github.com/moshix/web3270/releases/download/${{ version }}/web3270-${{ build_version }}-darwin-arm64
+      file_name: web3270
+      sha256: 43ae397b907a1f8bb42fa22fd862090ce22b4e76357c112fb8174aecd3903cb2
+  - if: win
+    then:
+      url: https://github.com/moshix/web3270/releases/download/${{ version }}/web3270-${{ build_version }}-windows-amd64.exe
+      file_name: web3270.exe
+      sha256: e201bd72f70ed12ec46d3ed7aed28b1f53b14b23c534fd8687508d2a0d9ccc0c
+  - url: https://raw.githubusercontent.com/moshix/web3270/refs/tags/${{ version }}/LICENSE
+    sha256: 2b2771a3f3eb13fcca951a12b163918921310b0294323c9af3b157de82fe877d
+
+build:
+  number: 0
+  script:
+    - if: win
+      then:
+        - mkdir %LIBRARY_BIN%
+        - copy web3270.exe %LIBRARY_BIN%\web3270.exe
+      else:
+        - mkdir -p $PREFIX/bin
+        - cp web3270 $PREFIX/bin/web3270
+        - chmod +x $PREFIX/bin/web3270
+
+tests:
+  - package_contents:
+      bin:
+        - web3270
+      strict: true
+  - script: web3270 --help
+
+about:
+  summary: A lightweight, easy to use, and free 3270 terminal emulator in the browser
+  homepage: https://github.com/moshix/web3270
+  repository: https://github.com/moshix/web3270
+  license: LicenseRef-Moshix-Software-License-1.0
+  license_file: LICENSE

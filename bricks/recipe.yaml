@@ -1,0 +1,122 @@
+context:
+  version: 3.1.8
+
+package:
+  name: bricks
+  version: ${{ version }}
+
+source:
+  # BRICKS_TS ships seven separate tools; there is no linux-arm64 build
+  # (only linux-armv7, which is not a target platform), so linux-aarch64
+  # is skipped below.
+  - if: linux and x86_64
+    then:
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricks-${{ version }}-linux-amd64
+        file_name: bricks
+        sha256: 0d39f17bc838604778d9fdb2ae72aedd722a028d3b18038f1d62cbfe2984df43
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/brickscompile-${{ version }}-linux-amd64
+        file_name: brickscompile
+        sha256: 198853a50c3800ae88f9c51f2b0464666f3a2394d6b6443386e321623db0842f
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricksconvert-${{ version }}-linux-amd64
+        file_name: bricksconvert
+        sha256: 7c5aea8883bc7db40fb2904da5c0ca0b346dc64c48409d9b5e982782cbe3369f
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricksdesigner-${{ version }}-linux-amd64
+        file_name: bricksdesigner
+        sha256: cce0a711a02698993a570dcbafc29015960a69505f254970f733b86306b925e9
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricksload-${{ version }}-linux-amd64
+        file_name: bricksload
+        sha256: 957b4bae79bd2b61c06e71a0bd0106ec4db12151ff1fe7c09c28b2acb72f48e0
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/brickspw-${{ version }}-linux-amd64
+        file_name: brickspw
+        sha256: 17f490f0998768ec8a9f0608311d8003621595bae18fb1f2291c281cd329e920
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/idcams-${{ version }}-linux-amd64
+        file_name: idcams
+        sha256: 0e447f21cd67143e8b712430c99a616999171e9ba766f6484285d1abc7091d43
+  - if: osx and arm64
+    then:
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricks-${{ version }}-darwin-arm64
+        file_name: bricks
+        sha256: 104077f60bf18b2aa70e67a3cb0bd144679b768846480b3b49fa0a9b447c014e
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/brickscompile-${{ version }}-darwin-arm64
+        file_name: brickscompile
+        sha256: ab6c70d95539047e1e848564b473bc4d151d35a95207162db955f3f789f477c2
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricksconvert-${{ version }}-darwin-arm64
+        file_name: bricksconvert
+        sha256: 52fdedfe3dc7ad3b3697de415c525522446bfcf5ab7bba430bcca46ede4c84ea
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricksdesigner-${{ version }}-darwin-arm64
+        file_name: bricksdesigner
+        sha256: 8aa48c6acdf1eceae7b2217e0aa583d3dd0bae0492aa2ddd1d2b42ce967e6528
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricksload-${{ version }}-darwin-arm64
+        file_name: bricksload
+        sha256: 2844c924a85b26a8ec1e227644397cb40c2eff4bd2a534213c7b8a7c58260df7
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/brickspw-${{ version }}-darwin-arm64
+        file_name: brickspw
+        sha256: bc88ab6cc5e2135476761ff5b8438c3df6dde734539441a5e73e9e958755b878
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/idcams-${{ version }}-darwin-arm64
+        file_name: idcams
+        sha256: f2da601db556f245aa7afe6b6600be34fc4beb5cbd7cf7de288be6f8f7d93f8f
+  - if: win
+    then:
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricks-${{ version }}-windows-amd64.exe
+        file_name: bricks.exe
+        sha256: 6e6d168b0f9077efd795f5fdf3dd0069721d00903b9c24312f03c72e0fc62e3a
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/brickscompile-${{ version }}-windows-amd64.exe
+        file_name: brickscompile.exe
+        sha256: 2de2dca8fc5015e87d6d1b1648ecfc39d0d98c81270b2268c05a46d95a7fead4
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricksconvert-${{ version }}-windows-amd64.exe
+        file_name: bricksconvert.exe
+        sha256: bb0356f8dfbe3df3bf5f802ccd73fa74adda09befd75100437d1b14ede43f1d4
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricksdesigner-${{ version }}-windows-amd64.exe
+        file_name: bricksdesigner.exe
+        sha256: 76e0b71709914361d0ad0307b001560da73e4ac3f80f20481fb08f7fae1b812d
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/bricksload-${{ version }}-windows-amd64.exe
+        file_name: bricksload.exe
+        sha256: 3a4f8f463e08e893528a0becfccf011eac73279c90f26dc4ed90c4592a87f8dc
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/brickspw-${{ version }}-windows-amd64.exe
+        file_name: brickspw.exe
+        sha256: 27f048def79cbed2cd0dc2d11599df816747af6d0687cd80f54de845938b57dd
+      - url: https://github.com/moshix/BRICKS_TS/releases/download/v${{ version }}/idcams-${{ version }}-windows-amd64.exe
+        file_name: idcams.exe
+        sha256: 3853554ad64d111efdf9847c10866573befd6ebf5475fce17c6cd780602f4754
+  - url: https://raw.githubusercontent.com/moshix/BRICKS_TS/refs/tags/v${{ version }}/LICENSE.md
+    sha256: 4bae84ca9233412535ba85b0d4e88abf840058d584609b2c99e859754794126a
+
+build:
+  number: 0
+  # no linux-arm64 release asset (only linux-armv7, not a target platform)
+  skip: linux and aarch64
+  script:
+    - if: win
+      then:
+        - mkdir %LIBRARY_BIN%
+        - for %%f in (bricks brickscompile bricksconvert bricksdesigner bricksload brickspw idcams) do copy %%f.exe %LIBRARY_BIN%\%%f.exe
+      else:
+        - mkdir -p $PREFIX/bin
+        - |
+          for f in bricks brickscompile bricksconvert bricksdesigner bricksload brickspw idcams; do
+            cp "$f" "$PREFIX/bin/$f"
+            chmod +x "$PREFIX/bin/$f"
+          done
+
+tests:
+  - package_contents:
+      bin:
+        - bricks
+        - brickscompile
+        - bricksconvert
+        - bricksdesigner
+        - bricksload
+        - brickspw
+        - idcams
+      strict: true
+  - script:
+      - bricks --help
+      - brickscompile --help
+      - idcams --help
+
+about:
+  summary: A CICS compatible transaction server
+  homepage: https://github.com/moshix/BRICKS_TS
+  repository: https://github.com/moshix/BRICKS_TS
+  license: LicenseRef-Moshix-Software-License-1.1
+  license_file: LICENSE.md
