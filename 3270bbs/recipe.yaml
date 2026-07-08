@@ -1,0 +1,57 @@
+context:
+  version: 4.2.2
+  # the release binaries carry a four-part build version
+  build_version: 4.2.2.3
+
+package:
+  name: 3270bbs
+  version: ${{ version }}
+
+source:
+  - if: linux and x86_64
+    then:
+      url: https://github.com/moshix/3270BBS/releases/download/${{ version }}/3270BBS-${{ build_version }}-linux-amd64
+      file_name: 3270bbs
+      sha256: 24bd8b0b4b51bf4b4d35f0ee033f9fa64e6e9b6c9d8edeb716e00d676106c240
+  - if: linux and aarch64
+    then:
+      url: https://github.com/moshix/3270BBS/releases/download/${{ version }}/3270BBS-${{ build_version }}-linux-arm64
+      file_name: 3270bbs
+      sha256: 844b7d31f11270113609c5a6ee40f56a32a0bfa6541e72f2c3f306690746f838
+  - if: osx and arm64
+    then:
+      url: https://github.com/moshix/3270BBS/releases/download/${{ version }}/3270BBS-${{ build_version }}-darwin-arm64
+      file_name: 3270bbs
+      sha256: 3d247dfac7204c5345caf1ee1085a8322e35bf6eb7ff548ed1edfdbeabefd0fa
+  - if: win
+    then:
+      url: https://github.com/moshix/3270BBS/releases/download/${{ version }}/3270BBS-${{ build_version }}-windows-amd64.exe
+      file_name: 3270bbs.exe
+      sha256: 25010ffe87e6b77ecb4908dfacea8e88aa0e1214ce4f8f68a155ef399322a28d
+  - url: https://raw.githubusercontent.com/moshix/3270BBS/refs/tags/${{ version }}/LICENSE
+    sha256: 2b2771a3f3eb13fcca951a12b163918921310b0294323c9af3b157de82fe877d
+
+build:
+  number: 0
+  script:
+    - if: win
+      then:
+        - mkdir %LIBRARY_BIN%
+        - copy 3270bbs.exe %LIBRARY_BIN%\3270bbs.exe
+      else:
+        - mkdir -p $PREFIX/bin
+        - cp 3270bbs $PREFIX/bin/3270bbs
+        - chmod +x $PREFIX/bin/3270bbs
+
+tests:
+  - package_contents:
+      bin:
+        - 3270bbs
+      strict: true
+
+about:
+  summary: A BBS for 3270 terminals
+  homepage: https://github.com/moshix/3270BBS
+  repository: https://github.com/moshix/3270BBS
+  license: LicenseRef-Moshix-Software-License-1.0
+  license_file: LICENSE
