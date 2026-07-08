@@ -8,3 +8,8 @@ updates:
       gh-actions:
         patterns:
           - "*"
+    ignore:
+      # v3 switched to swiftly, which breaks inside rattler-build's sanitized
+      # build-script env. Pinned to v2.4.0 in build.yml.
+      - dependency-name: swift-actions/setup-swift
+        versions: [">=3"]

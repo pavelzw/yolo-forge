@@ -11,6 +11,8 @@ source:
 
 build:
   number: 0
+  # upstream ships no Windows release and the source build does not link on MSVC
+  skip: win
   script:
     env:
       CARGO_PROFILE_RELEASE_STRIP: symbols
