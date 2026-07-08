@@ -31,9 +31,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     # https://github.com/conda-forge/conda-forge.github.io/issues/2550
+    # Pinned to v2.4.0: v3 switched to swiftly, whose `swift` shim fails inside
+    # rattler-build's sanitized build-script env ("Could not load swiftly's
+    # configuration file"). See dependabot ignore in .github/dependabot.yml.
     - name: Install Swift
       if: matrix.os == 'macos-latest'
-      uses: swift-actions/setup-swift@364295d9c23900ce04d4e5cc708387921b4e50f9 # v3
+      uses: swift-actions/setup-swift@7ca6abe6b3b0e8b5421b88be48feee39cbf52c6a # v2.4.0
       with:
         swift-version: 6.2
     - run: swift --version

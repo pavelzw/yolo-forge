@@ -1,0 +1,3 @@
+[default.extend-words]
+# moer is the name of moshix's editor (github.com/moshix/moer)
+moer = "moer"
