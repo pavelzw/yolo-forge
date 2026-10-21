@@ -2,7 +2,7 @@
 # PRs opened with the default GITHUB_TOKEN do not trigger other workflows, so the
 # build workflow would not run on autoupdate PRs without a separate token.
 issuer: https://token.actions.githubusercontent.com
-subject: repo:pavelzw/yolo-forge:ref:refs/heads/main
+subject: repo:pavelzw@29506042/yolo-forge@940634797:ref:refs/heads/main
 claim_pattern:
   job_workflow_ref: pavelzw/yolo-forge/\.github/workflows/autoupdate\.yml@refs/heads/main
 permissions:

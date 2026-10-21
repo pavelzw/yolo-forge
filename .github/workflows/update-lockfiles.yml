@@ -1,8 +1,6 @@
 name: Update lockfiles
 
-permissions:
-  contents: write
-  pull-requests: write
+permissions: {}
 
 on:
   workflow_dispatch:
@@ -12,8 +10,13 @@ on:
 jobs:
   pixi-update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write  # for octo-sts
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Set up pixi
         uses: prefix-dev/setup-pixi@d3f436a425481402e6a95a1d1fc10331c708cd9e # v0.10.2
         with:
@@ -22,10 +25,16 @@ jobs:
         run: |
           set -euo pipefail
           pixi update --json --no-install | pixi exec pixi-diff-to-markdown >> diff.md
+      # PRs created with the default GITHUB_TOKEN would not trigger the build workflow
+      - uses: octo-sts/action@f603d3be9d8dd9871a265776e625a27b00effe05 # v1.1.1
+        id: octo-sts
+        with:
+          scope: ${{ github.repository }}
+          identity: update-lockfiles
       - name: Create pull request
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.octo-sts.outputs.token }}
           commit-message: Update pixi lockfile
           title: Update pixi lockfile
           body-path: diff.md
