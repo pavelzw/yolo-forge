@@ -6,7 +6,7 @@ package:
   version: ${{ version }}
 
 source:
-  - url: https://github.com/finnvoor/yap/releases/download/1.0.2/yap-1.0.2.tar.gz
+  - url: https://github.com/finnvoor/yap/releases/download/${{ version }}/yap-${{ version }}.tar.gz
     sha256: 78e51334712fb5a6c393d682a7675f92b6f6215ca42558803362e68302769f91
   - url: https://raw.githubusercontent.com/finnvoor/yap/refs/tags/${{ version }}/LICENSE
     sha256: 7179683e8000e6bdc9bbc60d85edf0a4ac8e76f951857f54fcb775d5886f1309

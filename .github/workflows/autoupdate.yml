@@ -1,0 +1,74 @@
+name: Autoupdate recipes
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 6 * * *
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      updates: ${{ steps.check.outputs.updates }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: prefix-dev/setup-pixi@d3f436a425481402e6a95a1d1fc10331c708cd9e # v0.10.2
+        with:
+          activate-environment: true
+      - name: Check for new upstream versions
+        id: check
+        run: python scripts/autoupdate.py check
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+  bump:
+    needs: check
+    if: needs.check.outputs.updates != '[]'
+    name: Update ${{ matrix.package }} to ${{ matrix.version }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write  # for octo-sts
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.check.outputs.updates) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: prefix-dev/setup-pixi@d3f436a425481402e6a95a1d1fc10331c708cd9e # v0.10.2
+        with:
+          activate-environment: true
+      - name: Bump recipe
+        run: python scripts/autoupdate.py bump "$RECIPE" "$VERSION"
+        env:
+          RECIPE: ${{ matrix.recipe }}
+          VERSION: ${{ matrix.version }}
+          GITHUB_TOKEN: ${{ github.token }}
+      # PRs created with the default GITHUB_TOKEN would not trigger the build workflow
+      - uses: octo-sts/action@f603d3be9d8dd9871a265776e625a27b00effe05 # v1.1.1
+        id: octo-sts
+        with:
+          scope: ${{ github.repository }}
+          identity: autoupdate
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ steps.octo-sts.outputs.token }}
+          commit-message: Update ${{ matrix.package }} to ${{ matrix.version }}
+          title: Update ${{ matrix.package }} to ${{ matrix.version }}
+          body: |
+            Automatic update of `${{ matrix.package }}` from ${{ matrix.current }} to ${{ matrix.version }}.
+
+            Created by the [autoupdate workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+          branch: autoupdate/${{ matrix.recipe }}
+          base: main
+          delete-branch: true
+          add-paths: ${{ matrix.recipe }}/recipe.yaml
