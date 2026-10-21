@@ -17,7 +17,8 @@ build:
   script:
     - swift build -c release --arch arm64
     - mkdir -p $PREFIX/bin
-    - cp .build/arm64-apple-macosx/release/xcede $PREFIX/bin/xcede
+    # the output directory differs between SwiftPM build backends
+    - cp "$(swift build -c release --arch arm64 --show-bin-path)/xcede" $PREFIX/bin/xcede
 
 tests:
   - package_contents:
