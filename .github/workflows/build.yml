@@ -31,14 +31,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     # https://github.com/conda-forge/conda-forge.github.io/issues/2550
-    # Pinned to v2.4.0: v3 switched to swiftly, whose `swift` shim fails inside
-    # rattler-build's sanitized build-script env ("Could not load swiftly's
-    # configuration file"). See dependabot ignore in .github/dependabot.yml.
-    - name: Install Swift
-      if: matrix.os == 'macos-latest'
-      uses: swift-actions/setup-swift@7ca6abe6b3b0e8b5421b88be48feee39cbf52c6a # v2.4.0
-      with:
-        swift-version: 6.2
+    # Swift is not available on conda-forge, so Swift recipes use the toolchain
+    # bundled with the runner's Xcode. Don't install a swift.org toolchain via
+    # swift-actions/setup-swift: v2 tops out at Swift 6.2, whose stdlib gates
+    # `Span.bytes` behind macOS 26 (breaks swift-subprocess >= 1.0), and v3
+    # switched to swiftly, whose `swift` shim fails inside rattler-build's
+    # sanitized build-script env ("Could not load swiftly's configuration file").
     - run: swift --version
       if: matrix.os == 'macos-latest'
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
