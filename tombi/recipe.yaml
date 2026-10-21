@@ -23,6 +23,8 @@ build:
         then:
           - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path rust/tombi-cli
         else:
+          # aws-lc-sys includes jitterentropy.h via a long relative path that exceeds MAX_PATH in the build env
+          - set AWS_LC_SYS_NO_JITTER_ENTROPY=1
           - cargo auditable install --locked --no-track --bins --root %LIBRARY_PREFIX% --path rust/tombi-cli
       - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
 
