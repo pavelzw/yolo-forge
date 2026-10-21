@@ -46,3 +46,9 @@ repos:
         entry: pixi run check-jsonschema --schemafile https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
         files: ^[^/]+/recipe.yaml$
         types: [yaml]
+      # zizmor
+      - id: zizmor
+        name: zizmor
+        entry: pixi run zizmor --no-progress
+        language: system
+        files: ^\.github/(workflows|actions)/.*\.ya?ml$
