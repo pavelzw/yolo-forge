@@ -7,6 +7,7 @@ Some forks/packages of mine as conda packages for easier installation and manage
 - [moshix/web3270](https://github.com/moshix/web3270) (repackaged from the release binaries)
 - [moshix/BRICKS_TS](https://github.com/moshix/BRICKS_TS) (repackaged from the release binaries)
 - [moshix/3270BBS](https://github.com/moshix/3270BBS) (repackaged from the release binaries)
+- [pavelzw/tombi](https://github.com/pavelzw/tombi) (fork of [tombi-toml/tombi](https://github.com/tombi-toml/tombi), compiled from source)
 
 The full documentation for the recipe format can be found in the [rattler-build documentation](https://rattler.build/latest/reference/recipe_file).
 
@@ -38,4 +39,10 @@ pixi global install -c https://prefix.dev/yolo-forge bricks
 
 ```bash
 pixi global install -c https://prefix.dev/yolo-forge 3270bbs
+```
+
+## tombi
+
+```bash
+pixi global install -c https://prefix.dev/yolo-forge tombi-pavelzw
 ```

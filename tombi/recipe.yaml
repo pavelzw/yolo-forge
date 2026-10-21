@@ -1,0 +1,61 @@
+context:
+  version: "1.8.9"
+
+package:
+  name: tombi-pavelzw
+  version: ${{ version }}
+
+source:
+  url: https://github.com/pavelzw/tombi/archive/refs/tags/v${{ version }}-pixi.tar.gz
+  sha256: 384022c2294d0332d70e7f87fff2b2961b304203140601ce432c8a421d1edda1
+
+build:
+  number: 0
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      # upstream uses 0.0.0-dev as a placeholder and derives the version from git tags
+      # (unquoted so the same command works in bash and cmd.exe)
+      - sed -i s/0\.0\.0-dev/${{ version }}/g Cargo.toml Cargo.lock
+      - if: unix
+        then:
+          - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path rust/tombi-cli
+        else:
+          # aws-lc-sys includes jitterentropy.h via a long relative path that exceeds MAX_PATH in the build env
+          - set AWS_LC_SYS_NO_JITTER_ENTROPY=1
+          - cargo auditable install --locked --no-track --bins --root %LIBRARY_PREFIX% --path rust/tombi-cli
+      - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - cargo-auditable
+    - if: unix
+      then: sed
+      else: m2-sed
+
+tests:
+  - script: tombi --help
+  - script:
+      - if: win
+        then: tombi --version | findstr "${{ version }}"
+        else: tombi --version | grep -F '${{ version }}'
+  - package_contents:
+      bin:
+        - tombi
+      strict: true
+
+about:
+  homepage: https://tombi-toml.github.io/tombi
+  summary: Feature-Rich TOML Toolkit (pavelzw's fork with pixi patches).
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  documentation: https://tombi-toml.github.io/tombi/docs
+  repository: https://github.com/pavelzw/tombi
