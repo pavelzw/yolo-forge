@@ -1,5 +1,5 @@
 context:
-  version: 1.0.2
+  version: 1.2.1
 
 package:
   name: yap-repackaged
@@ -7,12 +7,12 @@ package:
 
 source:
   - url: https://github.com/finnvoor/yap/releases/download/${{ version }}/yap-${{ version }}.tar.gz
-    sha256: 78e51334712fb5a6c393d682a7675f92b6f6215ca42558803362e68302769f91
+    sha256: 5d7cef0c5d5de12902ac3d14d555ac8f6090812bedb57ccfd270829d8dc23e70
   - url: https://raw.githubusercontent.com/finnvoor/yap/refs/tags/${{ version }}/LICENSE
     sha256: 7179683e8000e6bdc9bbc60d85edf0a4ac8e76f951857f54fcb775d5886f1309
 
 build:
-  number: 2
+  number: 0
   skip: target_platform != 'osx-arm64'
   script:
     - mkdir -p $PREFIX/bin
