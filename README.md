@@ -9,8 +9,6 @@ Some forks/packages of mine as conda packages for easier installation and manage
 - [moshix/3270BBS](https://github.com/moshix/3270BBS) (repackaged from the release binaries)
 - [pavelzw/tombi](https://github.com/pavelzw/tombi) (fork of [tombi-toml/tombi](https://github.com/tombi-toml/tombi), compiled from source)
 
-Recipes are checked daily for new upstream versions by the [autoupdate workflow](.github/workflows/autoupdate.yml) (`pixi run autoupdate check`), which opens a PR per outdated recipe using a token from [octo-sts](https://github.com/octo-sts/app) so that the build workflow runs on it.
-
 The full documentation for the recipe format can be found in the [rattler-build documentation](https://rattler.build/latest/reference/recipe_file).
 
 ## yap
