@@ -1,0 +1,10 @@
+# octo-sts trust policy (https://github.com/octo-sts/app) used by .github/workflows/update-lockfiles.yml.
+# PRs opened with the default GITHUB_TOKEN do not trigger other workflows, so the
+# build workflow would not run on lockfile update PRs without a separate token.
+issuer: https://token.actions.githubusercontent.com
+subject: repo:pavelzw@29506042/yolo-forge@940634797:ref:refs/heads/main
+claim_pattern:
+  job_workflow_ref: pavelzw/yolo-forge/\.github/workflows/update-lockfiles\.yml@refs/heads/main
+permissions:
+  contents: write
+  pull_requests: write
