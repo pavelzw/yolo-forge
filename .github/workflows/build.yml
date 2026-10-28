@@ -77,7 +77,7 @@ jobs:
 
   comment:
     needs: build
-    if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+    if: github.event_name == 'pull_request' && !cancelled()
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
