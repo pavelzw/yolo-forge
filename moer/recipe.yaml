@@ -10,7 +10,7 @@ source:
     sha256: db77bd4f6d1aec917201da674bff40507d4d66ced7d940caa52baa3966a5c0d8
 
 build:
-  number: 0
+  number: 1
   # upstream ships no Windows release and the source build does not link on MSVC
   skip: win
   script:

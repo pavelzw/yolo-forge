@@ -12,7 +12,7 @@ source:
     sha256: 7179683e8000e6bdc9bbc60d85edf0a4ac8e76f951857f54fcb775d5886f1309
 
 build:
-  number: 0
+  number: 1
   skip: target_platform != 'osx-arm64'
   script:
     - mkdir -p $PREFIX/bin
