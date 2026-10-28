@@ -12,7 +12,7 @@ source:
     sha256: 09e64454d10710ae2ac7db3cbabd50aa4130392abf7b353a61e88c3425aa6673
 
 build:
-  number: 0
+  number: 1
   skip: target_platform != 'osx-arm64'
   script:
     - swift build -c release --arch arm64

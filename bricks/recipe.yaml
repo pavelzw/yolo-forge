@@ -82,7 +82,7 @@ source:
     sha256: 4bae84ca9233412535ba85b0d4e88abf840058d584609b2c99e859754794126a
 
 build:
-  number: 0
+  number: 1
   # no linux-arm64 release asset (only linux-armv7, not a target platform)
   skip: linux and aarch64
   script:

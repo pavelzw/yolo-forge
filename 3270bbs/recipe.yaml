@@ -27,7 +27,7 @@ source:
     sha256: 9003901a1351143cb506fc3af31ff11559e6b2ffa649a946b8d98eb20d51d8d9
 
 build:
-  number: 0
+  number: 1
   # upstream stopped publishing Windows binaries with 4.3.1
   skip: win
   script:
