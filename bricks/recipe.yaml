@@ -1,5 +1,5 @@
 context:
-  version: 3.5.6
+  version: 3.5.7
 
 package:
   name: bricks
@@ -10,94 +10,94 @@ source:
     then:
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricks-${{ version }}-linux-amd64
         file_name: bricks
-        sha256: 298942bd886dffb821a0ef007760b6e7efa9fa8a0b57c3ec7f10315f8ed3e9c1
+        sha256: 0ede103bd373e7109353890f341993e7102994d35e342d5566ec39eee652c7d3
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/brickscompile-${{ version }}-linux-amd64
         file_name: brickscompile
-        sha256: 683860d47eb112ca495cc9f8b3b3ff564cf0a44fd8e6df8d5a6019dc5bd17ae8
+        sha256: 0bf27b0dbb5068d6920524d33dc8a17e1993cb61d83650f2c07efec91e822c59
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksconvert-${{ version }}-linux-amd64
         file_name: bricksconvert
-        sha256: a6a2aa1bfeff3633487e0d36e8b383d2dbe4b01b7eb407dcad6587239b27d38c
+        sha256: c598ffae2777cc88790eda183b46c094deaa2d4bf45f5f7fc6fa577a10f04b7f
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksdesigner-${{ version }}-linux-amd64
         file_name: bricksdesigner
-        sha256: 5a0cf4ca474f01dd7a90c56a53579307b5102b939d166d69de23bed7a5aa8559
+        sha256: ad17ec884903f30a86fd690737b1b5ff6390f6e86af8695e2d9cfc82dd7a1e27
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksload-${{ version }}-linux-amd64
         file_name: bricksload
-        sha256: 6e2400eb727a75a7e9b3b8a8840e963e315d664305a9a5f21be4bb5993e93ae1
+        sha256: 56e160c88dd90fa3093fc9b2242361038cf821cc02ccbf2775567070bfd95940
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/brickspw-${{ version }}-linux-amd64
         file_name: brickspw
-        sha256: 889c6c21f5e68be40b5deacbf660d411debc5ef82f9485d3fc8bad5f208ccd01
+        sha256: 15ec5b54bcc06957e7a96fc504c01b0a600203140b84d79eb93020eb3dbcc985
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/idcams-${{ version }}-linux-amd64
         file_name: idcams
-        sha256: 30179d7e5fe4a38148c861877fa950e7f14436f7aa4ed0b0e012bbf3474eca22
+        sha256: bde7039891c65432012555ff479cc460eb683098dd35673742666bea81b9374d
   - if: linux and aarch64
     then:
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricks-${{ version }}-linux-arm64
         file_name: bricks
-        sha256: 23131688dcf441dbfa90a569dade37bff7f6e68a1cccf6aa9af95462269f7ead
+        sha256: dd1b850b091ed5a175577d8ae0fc4e26201bac94874d8f973f510643f874b29a
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/brickscompile-${{ version }}-linux-arm64
         file_name: brickscompile
-        sha256: 922b17389afb4dfd66bc88da3db0a506cc59ba881e0c8c8a34172ccc70658352
+        sha256: eaaaa3b58566df196f0dcf484851b088f7c6e1556c9be22843ed941288f90468
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksconvert-${{ version }}-linux-arm64
         file_name: bricksconvert
-        sha256: a20cd3916ba0b8ac0d44fc31d4788f3544a90bf934e87c36226a7a91bca06a60
+        sha256: ef78ccee6ebcd7d5f89a3b2eb210dfed8cf0e396fd94495ccdc0f2e25e4d55cd
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksdesigner-${{ version }}-linux-arm64
         file_name: bricksdesigner
-        sha256: b141dd15b9510ba00e43311a1d1b6171d77164086677673cc99f48dfa88b1026
+        sha256: 21e2d90a815e380b292701a0ae7b6ddf179219e442d375d9de261ec240373fac
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksload-${{ version }}-linux-arm64
         file_name: bricksload
-        sha256: 137bca651fd2d509d5b1b5ab10cf5ad731a7fdb16b5e04620f3fd91bb526efc5
+        sha256: a2ef09b9354183a28be6a74c768ce4ab7ab9321c6c31a52c1b19550852961e20
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/brickspw-${{ version }}-linux-arm64
         file_name: brickspw
-        sha256: b277147c8be854529f4e1336e468018c9bcb8cff801d5d6affbedcf94141405b
+        sha256: 3b3c0492487a80939e5a445402ff2cb858127423443a1823a0b423c93ff50243
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/idcams-${{ version }}-linux-arm64
         file_name: idcams
-        sha256: 65c2e3c2638f46a77225eb7e96e2716d7d77b750308eb6a111cde7788c1478cf
+        sha256: 88ee033eb0b3d920657e8490e6a28976af87103f45909157d57b86160e077d91
   - if: osx and arm64
     then:
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricks-${{ version }}-darwin-arm64
         file_name: bricks
-        sha256: d25b525a549d454339923b374aae5720834f89c73ac7ab08e97257541a71b3b7
+        sha256: 63ba0f68a209a8e1b110639ebd3d93ec25c5114dbd99932d2495589c5574559d
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/brickscompile-${{ version }}-darwin-arm64
         file_name: brickscompile
-        sha256: 07487ff2e9a654938b48cbd8efe1ba35e0e3a0582f3a4c8b565965e999661f30
+        sha256: 130fda1ce45fa00319a970399601e83eda4e46eb44144e866c3abe11fce2fcb0
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksconvert-${{ version }}-darwin-arm64
         file_name: bricksconvert
-        sha256: 66db7f5366041fa970ba56f9f7152366e9b5aedf57e07efbbd7cb8b0e514d308
+        sha256: 51c35b267d5d3738fe03c6e25f0d9167b196c9128c2c5de2ec5eb1651e8575e2
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksdesigner-${{ version }}-darwin-arm64
         file_name: bricksdesigner
-        sha256: 5d9cbc5131be1685f92a3c4229921d0f8f0a64c85a9465777ea1a53b7cfac76a
+        sha256: e5f3851c05e2f0cfb34d5512574bebd50b10e302d13773def46c2c093a1e2adc
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksload-${{ version }}-darwin-arm64
         file_name: bricksload
-        sha256: e6164fb4bb14e51b0d7693013ac945a21f4ca281f352459f59199cd1532c5255
+        sha256: 028a7a88e429f045d338cc7b0fa6466116e3e8aafff5061781a1b01dd213728d
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/brickspw-${{ version }}-darwin-arm64
         file_name: brickspw
-        sha256: b6b0ba030025c9bbf5cfa824f62398c29ca8ae6d9d6aa6f567cec5a078801585
+        sha256: e4ee6d7850d2b5524448d707080a987460a72da643b9908a82fa629b26097752
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/idcams-${{ version }}-darwin-arm64
         file_name: idcams
-        sha256: 119c32e0d466e1e4a62ab6874f2217865cb35a058a4d803842f9408859432dab
+        sha256: 7f63348bc038cafa56336e2e7251142b8674ae8361f0064365247a178b60cdde
   - if: win
     then:
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricks-${{ version }}-windows-amd64.exe
         file_name: bricks.exe
-        sha256: 59476adf8919bc6465075a7ab25a922f09feae44bd8dabd3cc32580915fef9c8
+        sha256: bfc5cf40a4ce18d7948b382e0567c105224d58cb70243a01cc33ec627a538d57
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/brickscompile-${{ version }}-windows-amd64.exe
         file_name: brickscompile.exe
-        sha256: 5b0718fbab6ec6f459006177c9cbecabbb25a9d97a73b5787bc197f30c5d4711
+        sha256: 8ef9f3c2c0f46d70356f982ce0f0e7fb324e29c39ecbbe077ce68db080e4e1af
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksconvert-${{ version }}-windows-amd64.exe
         file_name: bricksconvert.exe
-        sha256: fcbb15254dc45bdaaf01b7a67b8f8e728f56c1fcdb0299b027759773a0703602
+        sha256: 81f04a154bc574947bebeb734addc00da2e700255ffa84ed12321f6a4ecabd66
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksdesigner-${{ version }}-windows-amd64.exe
         file_name: bricksdesigner.exe
-        sha256: a446dacbf728c0ad19de5db511a6601cbadf96ae4e16bedeef44805e0a109698
+        sha256: facf1d53aa1ca68afc70d544a62b553a8315182f2a96409da769398fadc52600
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/bricksload-${{ version }}-windows-amd64.exe
         file_name: bricksload.exe
-        sha256: 2ae59b859b10207818932fd65a3425c3237a93ba8eda2677899826da3bd68a1d
+        sha256: 2223c9b8e41093e728a9cc867ab2ef5b08507c175770d498a82e6de197eeaec9
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/brickspw-${{ version }}-windows-amd64.exe
         file_name: brickspw.exe
-        sha256: ab664d9583e9f8180d7d4e787b2808e576bf9b882158d7b4387c63ea1c022d1a
+        sha256: 1769d0b1470efc9717e49e09a6871a52dc15c0872182407613f4f196bf471179
       - url: https://github.com/moshix/BRICKS_TS/releases/download/${{ version }}/idcams-${{ version }}-windows-amd64.exe
         file_name: idcams.exe
-        sha256: d19803a9103c25e877b01786c8411f908448219e747eaf2ddd93297e286add5e
+        sha256: 6711c09022e4d0b8152bf84b251f208d1ace20f3bcef84c3b3eb2321571d35aa
   - url: https://raw.githubusercontent.com/moshix/BRICKS_TS/refs/tags/${{ version }}/LICENSE.md
     sha256: 4bae84ca9233412535ba85b0d4e88abf840058d584609b2c99e859754794126a
 
