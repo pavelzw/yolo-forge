@@ -1,7 +1,7 @@
 context:
-  version: 4.3.0
+  version: 4.3.3
   # the release binaries carry a four-part build version
-  build_version: 4.3.1.5
+  build_version: 4.3.3.2
 
 package:
   name: web3270
@@ -12,27 +12,27 @@ source:
     then:
       url: https://github.com/moshix/web3270/releases/download/${{ version }}/web3270-${{ build_version }}-linux-amd64
       file_name: web3270
-      sha256: b80777e85409ad5a2aa47e7438191d7bc35be36b29021415590d8c7e49cf053b
+      sha256: 97d4de4c309840ed3a60a8099a8fe4e8ca42cc235dae8e1640262c5745b2a1f5
   - if: linux and aarch64
     then:
       url: https://github.com/moshix/web3270/releases/download/${{ version }}/web3270-${{ build_version }}-linux-arm64
       file_name: web3270
-      sha256: 8791de1f11425a226fbc28425e10bb301a687abe2d690339c3aaff786a6068e4
+      sha256: ae34e2a1007fb9858baeb0cc658e7fbdd4acea11defc8952aad03caef0e3d0df
   - if: osx and arm64
     then:
       url: https://github.com/moshix/web3270/releases/download/${{ version }}/web3270-${{ build_version }}-darwin-arm64
       file_name: web3270
-      sha256: 88f8fee79e8c1f2c54fac885daa115f91f1692c4b834776ada4ad97f8c879d2c
+      sha256: 8385f77067a8128e266ec5c51506e28e6264d69fb7aba95d620da08d8a932d34
   - if: win
     then:
       url: https://github.com/moshix/web3270/releases/download/${{ version }}/web3270-${{ build_version }}-windows-amd64.exe
       file_name: web3270.exe
-      sha256: 83bb9d897a8af8af85efeda5c0d89c179d624d31865d3f374666ea6500289407
+      sha256: aa8c68320f805d3ae995e5480a43087f4819e0d3bd7e82dc6b9e2c41fdb4ebc4
   - url: https://raw.githubusercontent.com/moshix/web3270/refs/tags/${{ version }}/LICENSE
     sha256: 2b2771a3f3eb13fcca951a12b163918921310b0294323c9af3b157de82fe877d
 
 build:
-  number: 1
+  number: 0
   script:
     - if: win
       then:
