@@ -1,7 +1,7 @@
 context:
-  version: 4.3.3
+  version: 4.4.4
   # the release binaries carry a four-part build version
-  build_version: 4.3.3.4
+  build_version: 4.4.1.1
 
 package:
   name: 3270bbs
@@ -12,17 +12,17 @@ source:
     then:
       url: https://github.com/moshix/3270BBS/releases/download/${{ version }}/3270BBS-${{ build_version }}-linux-amd64
       file_name: 3270bbs
-      sha256: 935e82597650ae7da0d99d7f0f9430c97e149359d7480765866b779c9d0c6950
+      sha256: 6620d186080debec6fb1d4fdbbd8c90c989edcacc0ee6e6b3779a5b8f9f73bab
   - if: linux and aarch64
     then:
       url: https://github.com/moshix/3270BBS/releases/download/${{ version }}/3270BBS-${{ build_version }}-linux-arm64
       file_name: 3270bbs
-      sha256: 2de7a06e82ff888eefd467914eea00a1c740639b8282ccd476fbfc0b22947281
+      sha256: e441d1f167e01e65b5bb31af2fbeab98d445220687ac55c24ee742f39e6ea38c
   - if: osx and arm64
     then:
       url: https://github.com/moshix/3270BBS/releases/download/${{ version }}/3270BBS-${{ build_version }}-darwin-arm64
       file_name: 3270bbs
-      sha256: 822b5aa09b2bb0411c3f5921904d03ca8116dae340bf8be9e4b9622aaff94dc2
+      sha256: 786aaff9e1d8f376c7b7d947adf533e8fdb1736b5b8a206d4556ab626ae94ef0
   - url: https://raw.githubusercontent.com/moshix/3270BBS/refs/tags/${{ version }}/LICENSE
     sha256: 9003901a1351143cb506fc3af31ff11559e6b2ffa649a946b8d98eb20d51d8d9
 
