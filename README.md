@@ -8,6 +8,7 @@ Some forks/packages of mine as conda packages for easier installation and manage
 - [moshix/BRICKS_TS](https://github.com/moshix/BRICKS_TS) (repackaged from the release binaries)
 - [moshix/3270BBS](https://github.com/moshix/3270BBS) (repackaged from the release binaries)
 - [pavelzw/tombi](https://github.com/pavelzw/tombi) (fork of [tombi-toml/tombi](https://github.com/tombi-toml/tombi), compiled from source)
+- [pingdotgg/t3code](https://github.com/pingdotgg/t3code) (repackaged from the release binaries; bundles the proprietary Claude Agent SDK and Cursor SDK, so it can't go to conda-forge)
 
 The full documentation for the recipe format can be found in the [rattler-build documentation](https://rattler.build/latest/reference/recipe_file).
 
@@ -45,4 +46,10 @@ pixi global install -c https://prefix.dev/yolo-forge 3270bbs
 
 ```bash
 pixi global install -c https://prefix.dev/yolo-forge tombi-pavelzw
+```
+
+## t3code
+
+```bash
+pixi global install -c https://prefix.dev/yolo-forge t3code
 ```
