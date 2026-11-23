@@ -1,5 +1,5 @@
 context:
-  version: "1.9.7"
+  version: "1.11.3"
 
 package:
   name: tombi-pavelzw
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/pavelzw/tombi/archive/refs/tags/v${{ version }}-pixi.tar.gz
-  sha256: 853d1769246e7e036fca09f8af708f069cdf19d346b231d40f2e2e754ab3666d
+  sha256: 1005ece1ae5ee3d8624bcb23a781924df55b3270f86e85b7978f11b78665fdc6
 
 build:
   number: 0
