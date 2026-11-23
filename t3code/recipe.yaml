@@ -1,0 +1,79 @@
+context:
+  version: 0.1.11
+
+package:
+  name: t3code
+  version: ${{ version }}
+
+source:
+  # The release archives contain a Node.js single executable (`t3`) that loads
+  # `client/`, `node_modules/` and `resource-monitor/` from its own directory,
+  # so the whole tree is kept together in `lib/t3code`.
+  - if: linux and x86_64
+    then:
+      url: https://github.com/pingdotgg/t3code/releases/download/v${{ version }}/t3-${{ version }}-linux-x64.tar.gz
+      sha256: 2b691c07f5bcb5adea4a863d5324aae7db21bd6d82280cec7787836dcaa013e1
+      target_directory: t3code
+  - if: linux and aarch64
+    then:
+      url: https://github.com/pingdotgg/t3code/releases/download/v${{ version }}/t3-${{ version }}-linux-arm64.tar.gz
+      sha256: 7d90a5af032fe0988a616403e0f51a6cb68eff7ed7a84bc40999cc3997dffd71
+      target_directory: t3code
+  - if: osx and arm64
+    then:
+      url: https://github.com/pingdotgg/t3code/releases/download/v${{ version }}/t3-${{ version }}-darwin-arm64.tar.gz
+      sha256: 4bc22e16a2e48d868ad8c4b9d6c8e031be1c566ce31c28267955c2986a70e95f
+      target_directory: t3code
+  - if: win
+    then:
+      url: https://github.com/pingdotgg/t3code/releases/download/v${{ version }}/t3-${{ version }}-win32-x64.zip
+      sha256: 02c92be05c4007339119c39cfc7db06335ee17563dd17c4ada72bcc43cba9d34
+      target_directory: t3code
+  - url: https://raw.githubusercontent.com/pingdotgg/t3code/refs/tags/v${{ version }}/LICENSE
+    sha256: 935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43
+
+build:
+  number: 0
+  # prebuilt binaries: don't touch them (rewriting the SEA binary or the native
+  # addons would break them and invalidate their code signatures)
+  prefix_detection:
+    ignore: true
+  dynamic_linking:
+    binary_relocation: false
+  script:
+    - if: win
+      then:
+        - mkdir %LIBRARY_LIB%
+        - xcopy /E /I /Q t3code %LIBRARY_LIB%\t3code
+        - mkdir %LIBRARY_BIN%
+        - echo @"%%~dp0..\lib\t3code\t3.exe" %%* > %LIBRARY_BIN%\t3.bat
+        - copy t3code\client\third-party-licenses.json third-party-licenses.json
+      else:
+        - mkdir -p $PREFIX/lib $PREFIX/bin
+        - cp -R t3code $PREFIX/lib/t3code
+        # process.execPath resolves symlinks, so the binary still finds its assets
+        - ln -s ../lib/t3code/t3 $PREFIX/bin/t3
+        - cp t3code/client/third-party-licenses.json third-party-licenses.json
+
+tests:
+  - script: t3 --help
+  - script:
+      - if: win
+        then: t3 --version | findstr "${{ version }}"
+        else: t3 --version | grep -F '${{ version }}'
+
+about:
+  summary: A minimal web GUI for coding agents (server and CLI)
+  description: |
+    T3 Code is a web GUI for coding agents such as Codex, Claude and Cursor.
+    This package repackages the upstream `t3` server/CLI release binaries.
+
+    The binary bundles proprietary components, most notably the Anthropic
+    Claude Agent SDK and the Cursor SDK, which is why it is not on conda-forge.
+    See `third-party-licenses.json` for all bundled licenses.
+  homepage: https://t3.codes
+  repository: https://github.com/pingdotgg/t3code
+  license: MIT AND LicenseRef-Anthropic-Claude-Agent-SDK AND LicenseRef-Cursor-SDK
+  license_file:
+    - LICENSE
+    - third-party-licenses.json
