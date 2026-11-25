@@ -1,5 +1,5 @@
 context:
-  version: 0.1.11
+  version: 0.1.12
 
 package:
   name: t3code
@@ -12,22 +12,22 @@ source:
   - if: linux and x86_64
     then:
       url: https://github.com/pingdotgg/t3code/releases/download/v${{ version }}/t3-${{ version }}-linux-x64.tar.gz
-      sha256: 2b691c07f5bcb5adea4a863d5324aae7db21bd6d82280cec7787836dcaa013e1
+      sha256: 9ba3db46e3554fb9970fd5ede9e823c2f6d6f6763f40340bd4c8ef6b09501c54
       target_directory: t3code
   - if: linux and aarch64
     then:
       url: https://github.com/pingdotgg/t3code/releases/download/v${{ version }}/t3-${{ version }}-linux-arm64.tar.gz
-      sha256: 7d90a5af032fe0988a616403e0f51a6cb68eff7ed7a84bc40999cc3997dffd71
+      sha256: 29cfbab19117aa436f1700382afb9cfe5d7ef47609cabba9356271a0bca5ad98
       target_directory: t3code
   - if: osx and arm64
     then:
       url: https://github.com/pingdotgg/t3code/releases/download/v${{ version }}/t3-${{ version }}-darwin-arm64.tar.gz
-      sha256: 4bc22e16a2e48d868ad8c4b9d6c8e031be1c566ce31c28267955c2986a70e95f
+      sha256: 1b78c9754160623661c5942a7e22f5a62a64bf1f96ab397f50bbc7c6b6115ca4
       target_directory: t3code
   - if: win
     then:
       url: https://github.com/pingdotgg/t3code/releases/download/v${{ version }}/t3-${{ version }}-win32-x64.zip
-      sha256: 02c92be05c4007339119c39cfc7db06335ee17563dd17c4ada72bcc43cba9d34
+      sha256: 78538f991f22dad437fb52b6ec2064d6473fb6940266b784f68a2431f55d6106
       target_directory: t3code
   - url: https://raw.githubusercontent.com/pingdotgg/t3code/refs/tags/v${{ version }}/LICENSE
     sha256: 935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43
